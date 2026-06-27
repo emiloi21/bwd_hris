@@ -1,4 +1,4 @@
-                            <?php
+<?php
                             require_once('personnel_files_lib.php');
                             pfm_ensure_schema($conn);
 
@@ -54,9 +54,7 @@
                         
                         
                         
-                <!--Add 201 Files Modal -->
-            
-                  <div id="add201Files<?php echo $personnel_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                <div id="add201Files<?php echo $personnel_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                     <div role="document" class="modal-dialog">
                       <div class="modal-content">
                       
@@ -68,7 +66,7 @@
                         </div>
                         
                         <div class="modal-body">
-           
+            
                       
                             <div class="form-group row">
                                
@@ -121,12 +119,6 @@
                       </div>
                     </div>
                   </div>
-                  <!-- end Add 201 Files Modal -->
-
-
-
-                <!--download 201 Files Modal -->
-            
                   <div id="download201Files<?php echo $personnel_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                     <div role="document" class="modal-dialog">
                       <div class="modal-content">
@@ -137,7 +129,7 @@
                         </div>
                         
                         <div class="modal-body">
-           
+            
                       
                             <div class="form-group row">
                               
@@ -256,10 +248,6 @@
                       </div>
                     </div>
                   </div>
-                  <!-- end download 201 Files Modal -->
-                  
-                  <!--update Shift Modal -->
-            
                   <div id="updateShift<?php echo $personnel_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                     <div role="document" class="modal-dialog">
                       <div class="modal-content">
@@ -274,7 +262,7 @@
                         </div>
                         
                         <div class="modal-body">
-           
+            
                       
                             <div class="form-group row">
                                
@@ -285,20 +273,24 @@
                                 <?php
                                   $shift_stmt = $conn->prepare("SELECT * FROM shifts WHERE shift_id = :shift_id");
                                   $shift_stmt->execute([':shift_id' => $editPer_row['shift_id']]);
-                                  $emp_stat_query = $shift_stmt;
-                                  $es_row=$emp_stat_query->fetch();
+                                  $es_row=$shift_stmt->fetch();
                                   ?>
                                     <select name="shift_id" class="form-control">
-                                    <option value="<?php echo $es_row['shift_id']; ?>"><?php echo $es_row['shift_name'].' ( '.$es_row['type'].' )'; ?></option>
+                                    
+                                    <?php if ($es_row) { ?>
+                                        <option value="<?php echo $es_row['shift_id']; ?>"><?php echo htmlspecialchars($es_row['shift_name']).' ( '.htmlspecialchars($es_row['type']).' )'; ?></option>
+                                    <?php } else { ?>
+                                        <option value="0">Not Set</option>
+                                    <?php } ?>
+
                                     <option value="0">-</option>
                                     <?php
                                     $dept = $_GET['dept'] ?? '';
                                     $shift_list_stmt = $conn->prepare("SELECT * FROM shifts WHERE do_id = :dept OR do_id = 0 ORDER BY shift_name ASC");
                                     $shift_list_stmt->execute([':dept' => $dept]);
-                                    $emp_stat_query = $shift_list_stmt;
-                                    while($es_row=$emp_stat_query->fetch()){
+                                    while($es_row_list=$shift_list_stmt->fetch()){
                                     ?>
-                                    <option value="<?php echo $es_row['shift_id']; ?>"><?php echo $es_row['shift_name'].' ( '.$es_row['type'].' )'; ?></option>
+                                    <option value="<?php echo $es_row_list['shift_id']; ?>"><?php echo htmlspecialchars($es_row_list['shift_name']).' ( '.htmlspecialchars($es_row_list['type']).' )'; ?></option>
                                     <?php } ?>
                                     
                                     </select>
@@ -322,10 +314,7 @@
                       </div>
                     </div>
                   </div>
-                  <!-- end update Shift Modal -->
-                  
-                        <!-- delete student Modal -->
-                          <div id="deletePersonnel<?php echo $personnel_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                  <div id="deletePersonnel<?php echo $personnel_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                             <div role="document" class="modal-dialog">
                               <div class="modal-content">
                               <form action="save_add_personnel.php?dept=<?php echo $editPer_row['do_id']; ?>" method="POST">
@@ -353,11 +342,4 @@
                               </div>
                             </div>
                           </div>
-                          <!-- end delete student Modal -->
-                          
-                          
-                          
-    
-         
-                  
-   <?php } ?>               
+                          <?php } ?>

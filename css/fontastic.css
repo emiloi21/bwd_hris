@@ -1,5 +1,18 @@
 @charset "UTF-8";
 
+/* =========================================
+   1. MODERN TEXT FONT (INTER)
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Apply modern font to all system text */
+body, h1, h2, h3, h4, h5, h6, p, a, span, div, input, button, select, textarea, table, th, td {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* =========================================
+   2. CUSTOM SYSTEM ICONS
+   ========================================= */
 @font-face {
   font-family: "dashboard";
   src:url("../fonts/dashboard.eot");
@@ -9,7 +22,6 @@
     url("../fonts/dashboard.svg#dashboard") format("svg");
   font-weight: normal;
   font-style: normal;
-
 }
 
 [data-icon]:before {
@@ -38,84 +50,31 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-home:before {
-  content: "\62";
-}
-.icon-form:before {
-  content: "\61";
-}
-.icon-list:before {
-  content: "\63";
-}
-.icon-presentation:before {
-  content: "\65";
-}
-.icon-bill:before {
-  content: "\66";
-}
-.icon-check:before {
-  content: "\67";
-}
-.icon-list-1:before {
-  content: "\68";
-}
-.icon-padnote:before {
-  content: "\69";
-}
-.icon-pencil-case:before {
-  content: "\6a";
-}
-.icon-user:before {
-  content: "\6b";
-}
-.icon-bars:before {
-  content: "\6c";
-}
-.icon-line-chart:before {
-  content: "\70";
-}
-.icon-flask:before {
-  content: "\6d";
-}
-.icon-grid:before {
-  content: "\6e";
-}
-.icon-picture:before {
-  content: "\6f";
-}
-.icon-website:before {
-  content: "\71";
-}
-.icon-screen:before {
-  content: "\72";
-}
-.icon-interface-windows:before {
-  content: "\73";
-}
-.icon-clock:before {
-  content: "\74";
-}
-.icon-rss-feed:before {
-  content: "\75";
-}
-.icon-mail:before {
-  content: "\64";
-}
-.icon-ios-email-outline:before {
-  content: "\76";
-}
-.icon-paper-airplane:before {
-  content: "\77";
-}
-.icon-ios-email:before {
-  content: "\78";
-}
-.icon-page:before {
-  content: "\41";
-}
-.icon-close:before {
-  content: "\79";
-}
-.icon-search:before {
-  content: "\7a";
-}
+/* --- Icon Mappings --- */
+.icon-home:before { content: "\62"; }
+.icon-form:before { content: "\61"; }
+.icon-list:before { content: "\63"; }
+.icon-presentation:before { content: "\65"; }
+.icon-bill:before { content: "\66"; }
+.icon-check:before { content: "\67"; }
+.icon-list-1:before { content: "\68"; }
+.icon-padnote:before { content: "\69"; }
+.icon-pencil-case:before { content: "\6a"; }
+.icon-user:before { content: "\6b"; }
+.icon-bars:before { content: "\6c"; }
+.icon-line-chart:before { content: "\70"; }
+.icon-flask:before { content: "\6d"; }
+.icon-grid:before { content: "\6e"; }
+.icon-picture:before { content: "\6f"; }
+.icon-website:before { content: "\71"; }
+.icon-screen:before { content: "\72"; }
+.icon-interface-windows:before { content: "\73"; }
+.icon-clock:before { content: "\74"; }
+.icon-rss-feed:before { content: "\75"; }
+.icon-mail:before { content: "\64"; }
+.icon-ios-email-outline:before { content: "\76"; }
+.icon-paper-airplane:before { content: "\77"; }
+.icon-ios-email:before { content: "\78"; }
+.icon-page:before { content: "\41"; }
+.icon-close:before { content: "\79"; }
+.icon-search:before { content: "\7a"; }

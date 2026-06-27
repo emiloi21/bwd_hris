@@ -52,11 +52,35 @@
         </div>
       </div>
 
-      <style>
-      .page-title-block { margin-bottom: 18px; }
-      .page-title-block h2 { margin-bottom: 4px; font-weight: 700; color: #243447; }
-      .page-title-block p { margin-bottom: 0; color: #6b7a88; }
-      </style>
+<style>
+  .page-title-block { margin-bottom: 18px; }
+  .page-title-block h2 { margin-bottom: 4px; font-weight: 700; color: #243447; }
+  .page-title-block p { margin-bottom: 0; color: #6b7a88; }
+
+  /* --- ADD THESE LINES TO FIX THE DROPDOWN HOVER ISSUE --- */
+  .dropdown {
+      position: relative;
+      display: inline-block;
+  }
+  
+  .dropdown-content {
+      position: absolute;
+      top: 100%; /* Snaps the menu directly directly to the bottom edge of the button */
+      margin-top: 0; /* Removes the physical gap causing the hover state to break */
+      z-index: 9999; /* Ensures the menu overlaps other elements like the table */
+  }
+
+  /* Creates an invisible hover bridge between the button and the menu just in case */
+  .dropdown::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 10px;
+      top: 100%;
+      left: 0;
+      background: transparent;
+  }
+</style>
 
       <section class="mt-30px mb-30px">
         <div class="container-fluid">

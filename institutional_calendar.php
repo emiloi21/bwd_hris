@@ -114,7 +114,7 @@
             </div>
                 
               <!-- kinder 1     -->
-              <div id="new-updates" class="card updates recent-updated">
+              <div id="new-updates" class="card updates recent-updated" style="width: 100%;">
                 <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
                   <h2 class="h5 display">
                   
@@ -351,7 +351,7 @@
               </div>
               <!-- kinder End-->
              
-            </div>
+            
             
           </div>
         </div>
