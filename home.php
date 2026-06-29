@@ -208,6 +208,7 @@
               
               <?php
               // --- QUICK COUNT QUERIES FOR SUMMARY CARDS ---
+<<<<<<< HEAD
               // Total Registered Employees (all records)
               $sys_emp_tot = $conn->query("SELECT COUNT(*) FROM personnels")->fetchColumn();
               $sys_emp_m = $conn->query("SELECT COUNT(*) FROM personnels WHERE sex='Male'")->fetchColumn();
@@ -218,6 +219,18 @@
               
               // Separated Job Status
               $separated_status_query = $conn->query("SELECT e.emp_stat_name, COUNT(p.personnel_id) as total FROM emp_status e LEFT JOIN personnels p ON e.empStat_id = p.empStat_id AND p.separation_date IS NOT NULL AND TRIM(p.separation_date) != '' AND p.separation_date NOT LIKE '0000-00-00%' WHERE e.status = 'Separated' GROUP BY e.empStat_id ORDER BY e.emp_stat_name ASC");
+=======
+              // Total Active Employees
+              $sys_emp_tot = $conn->query("SELECT COUNT(*) FROM personnels WHERE separation_date IS NULL OR separation_date = ''")->fetchColumn();
+              $sys_emp_m = $conn->query("SELECT COUNT(*) FROM personnels WHERE sex='Male' AND (separation_date IS NULL OR separation_date = '')")->fetchColumn();
+              $sys_emp_f = $conn->query("SELECT COUNT(*) FROM personnels WHERE sex='Female' AND (separation_date IS NULL OR separation_date = '')")->fetchColumn();
+              
+              // Active Job Status
+              $active_status_query = $conn->query("SELECT e.emp_stat_name, COUNT(p.personnel_id) as total FROM emp_status e LEFT JOIN personnels p ON e.empStat_id = p.empStat_id AND (p.separation_date IS NULL OR p.separation_date = '') WHERE e.status = 'Active' GROUP BY e.empStat_id ORDER BY e.emp_stat_name ASC");
+              
+              // Separated Job Status
+              $separated_status_query = $conn->query("SELECT e.emp_stat_name, COUNT(p.personnel_id) as total FROM emp_status e LEFT JOIN personnels p ON e.empStat_id = p.empStat_id AND p.separation_date IS NOT NULL AND p.separation_date != '' WHERE e.status = 'Separated' GROUP BY e.empStat_id ORDER BY e.emp_stat_name ASC");
+>>>>>>> 5f6427f28809f2b46e43c8e5eca66869f37f1b03
               
               // Configs
               $sys_shifts = $conn->query("SELECT COUNT(*) FROM shifts")->fetchColumn();
@@ -282,6 +295,7 @@
             { 
             
             // Fetch Statistics per department
+<<<<<<< HEAD
             $per_ctr_stmt = $conn->prepare("SELECT COUNT(*) FROM personnels WHERE do_id = :do_id");
             $per_ctr_stmt->execute([':do_id' => $do_row['do_id']]);
             $per_ctr_count = (int)$per_ctr_stmt->fetchColumn();
@@ -291,6 +305,17 @@
             $male_per_ctr_count = (int)$male_per_ctr_stmt->fetchColumn();
 
             $female_per_ctr_stmt = $conn->prepare("SELECT COUNT(*) FROM personnels WHERE do_id = :do_id AND sex = 'Female'");
+=======
+            $per_ctr_stmt = $conn->prepare("SELECT COUNT(*) FROM personnels WHERE do_id = :do_id AND (separation_date IS NULL OR separation_date = '')");
+            $per_ctr_stmt->execute([':do_id' => $do_row['do_id']]);
+            $per_ctr_count = (int)$per_ctr_stmt->fetchColumn();
+
+            $male_per_ctr_stmt = $conn->prepare("SELECT COUNT(*) FROM personnels WHERE do_id = :do_id AND sex = 'Male' AND (separation_date IS NULL OR separation_date = '')");
+            $male_per_ctr_stmt->execute([':do_id' => $do_row['do_id']]);
+            $male_per_ctr_count = (int)$male_per_ctr_stmt->fetchColumn();
+
+            $female_per_ctr_stmt = $conn->prepare("SELECT COUNT(*) FROM personnels WHERE do_id = :do_id AND sex = 'Female' AND (separation_date IS NULL OR separation_date = '')");
+>>>>>>> 5f6427f28809f2b46e43c8e5eca66869f37f1b03
             $female_per_ctr_stmt->execute([':do_id' => $do_row['do_id']]);
             $female_per_ctr_count = (int)$female_per_ctr_stmt->fetchColumn();
             
