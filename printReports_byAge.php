@@ -2,7 +2,6 @@
 <html>
 
   <?php
-  
    include('session.php');
    include('header.php');
    
@@ -51,8 +50,7 @@
     <?php include('navbar_header.php'); ?>
     
     
-    <!-- Breadcrumb-->
-      <div class="breadcrumb-holder">
+    <div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
             <li style="color: blue"><strong style="margin-right: 4px;"><?php echo $schoolName; ?> | </strong></li>
@@ -65,14 +63,12 @@
       
       
       
-      <!-- SHS Programs section Section -->
       <section class="mt-30px mb-30px">
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12 col-md-12">
               
               
-              <!-- kinder 1     -->
               <div id="new-updates" class="card updates recent-updated">
                 <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
                   <h2 class="h5 display">
@@ -81,49 +77,37 @@
                 </div>
                 <div id="updates-boxKinder" role="tabpanel" class="collapse show">
                     
-                    <table>
-                    <tr>
-                    <td style="background-color: white;  border: none;">
-                    
-                        <div class="dropdown" style="margin-left: 8px;"><a href="printReports.php" class="dropbtn" style="color: white;">ATTENDANCE REPORTS</a></div>
+                    <div class="d-flex flex-wrap align-items-center p-3" style="gap: 15px; background-color: #e9f3f9; border-bottom: 1px solid #dee2e6;">
                         
-                        <div class="dropdown" style="margin-left: 8px;">
+                        <a href="printReports.php" class="btn btn-success shadow-sm">ATTENDANCE REPORTS</a>
                         
-                          <button class="dropbtn">PERSONNEL REPORTS</button>
-                          
-                          <div class="dropdown-content">
-                            <a href="printReports_byAge.php?crw=AGE">Age with Date of Birth</a>
-                            <a href="printReports_byEduc.php?crw=EDUCATION">Educational Attainment</a>
-                            <a href="printReports_bySeminar.php?crw=SEMINAR">Seminars Attended</a>
-                            <a href="printReports_byService.php?crw=SERVICE">Date Hired with No. of Years</a>
+                        <div class="dropdown">
+                          <button class="btn btn-success dropdown-toggle shadow-sm" type="button" id="personnelDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            PERSONNEL REPORTS
+                          </button>
+                          <div class="dropdown-menu shadow" aria-labelledby="personnelDropdown">
+                            <a class="dropdown-item py-2" href="printReports_byAge.php?crw=AGE">Age with Date of Birth</a>
+                            <a class="dropdown-item py-2" href="printReports_byEduc.php?crw=EDUCATION">Educational Attainment</a>
+                            <a class="dropdown-item py-2" href="printReports_bySeminar.php?crw=SEMINAR">Seminars Attended</a>
+                            <a class="dropdown-item py-2" href="printReports_byService.php?crw=SERVICE">Date Hired with No. of Years</a>
                           </div>
-                          
                         </div>
                         
-                        <div class="dropdown" style="margin-left: 8px;">
-                        
-                          <button class="dropbtn">COMPANY REPORTS</button>
-                          
-                          <div class="dropdown-content">
-                            <a href="#">Calendar</a>
+                        <div class="dropdown">
+                          <button class="btn btn-success dropdown-toggle shadow-sm" type="button" id="companyDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            COMPANY REPORTS
+                          </button>
+                          <div class="dropdown-menu shadow" aria-labelledby="companyDropdown">
+                            <a class="dropdown-item py-2" href="#">Calendar</a>
                           </div>
-                          
                         </div>
-                        
-                    </td>
-                    </tr>
-                    
-                    <tr>
-                    <td style="background-color: white;  border: none;">
-                    <strong style="margin-left: 8px; font-size: 18px;">PERSONNEL REPORTS: AGE WITH DATE OF BIRTH</strong>
-                    </td>
-                    </tr>
-                    </table>
-                
-                <!-- Age update handled at top of page -->
-                
-                <!-- Filter Form -->
-                <div class="row mb-3">
+
+                    </div>
+
+                    <div class="px-3 pt-4 pb-2">
+                        <strong style="font-size: 18px; color: #444;">PERSONNEL REPORTS: AGE WITH DATE OF BIRTH</strong>
+                    </div>
+                    <div class="row mb-3">
                   <div class="col-lg-12">
                     <div class="card">
                       <div class="card-body">
@@ -198,9 +182,8 @@
                     </div>
                   </div>
                 </div>
- 
-                <!-- report filter Modal -->
-                  <div id="print_filter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+
+                <div id="print_filter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                     <div role="document" class="modal-dialog">
                       <div class="modal-content">
                       
@@ -235,9 +218,7 @@
                       </div>
                     </div>
                   </div>
-                  <!-- end report filter Modal -->
-                
-                <hr />
+                  <hr />
                     <div class="col-lg-12">
                     <div class="table-responsive" style="margin-top: 12px;">
                     <table id="" class="display" style="width:100%">
@@ -352,11 +333,7 @@
                  
                 </div>
               </div>
-              <!-- kinder End-->
-              
-              
-              
-            </div>
+              </div>
             
           </div>
         </div>

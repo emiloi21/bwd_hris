@@ -626,42 +626,30 @@ $studData_row=$studData_query->fetch();
 
 <?php
 
-$grandTotalLateMin=$grandTotalamLateMin+$grandTotalpmLateMin;
-$final_lateHr=$grandTotalLateMin/60;
-$final_lateHr=substr($grandTotalLateMin/60, 0,1);
-
-$final_lateMin=substr($grandTotalLateMin/60, 1)/100*60;
-$final_lateMin=number_format($final_lateMin, 2, '.', '');
-
-$final_lateMin=substr($final_lateMin, 2);
- 
+// 1. Force all incoming data to be integers. 
+// If the database returns an empty string, it safely becomes 0.
+$amLate = (int)$grandTotalamLateMin;
+$pmLate = (int)$grandTotalpmLateMin;
+$amUTime = (int)$grandTotalamUTimeMin;
+$pmUTime = (int)$grandTotalpmUTimeMin;
 
 
-$grandTotalUTimeMin=$grandTotalamUTimeMin+$grandTotalpmUTimeMin;
-$final_uTimeHr=$grandTotalUTimeMin/60;
-$final_uTimeHr=substr($grandTotalUTimeMin/60, 0,1);
+// 2. LATE TIME CALCULATION
+$grandTotalLateMin = $amLate + $pmLate;
+$final_lateHr = floor($grandTotalLateMin / 60);
+$final_lateMin = $grandTotalLateMin % 60;
 
-$final_uTimeMin=substr($grandTotalUTimeMin/60, 1)/100*60;
-$final_uTimeMin=number_format($final_uTimeMin, 2, '.', '');
-$final_uTimeMin=substr($final_uTimeMin, 2);
- 
- 
- 
- 
-$finalTotalLateUTimeMin=$grandTotalLateMin+$grandTotalUTimeMin;
-$final_TLUHr=$finalTotalLateUTimeMin/60;
 
-if($final_TLUHr<=1){
-    $final_TLUHr=substr($final_TLUHr, 0, 1);
-}else{
-    $final_TLUHr=substr($final_TLUHr, 0, 2);
-}
+// 3. UNDERTIME CALCULATION
+$grandTotalUTimeMin = $amUTime + $pmUTime;
+$final_uTimeHr = floor($grandTotalUTimeMin / 60);
+$final_uTimeMin = $grandTotalUTimeMin % 60;
 
-$final_TLUMin=substr($finalTotalLateUTimeMin/60, 2)/100*60;
-$final_TLUMin=number_format($final_TLUMin, 2, '.', '');
 
-$final_TLUMin=substr($final_TLUMin, 2);
-
+// 4. TOTAL COMBINED (LATE & UNDERTIME)
+$finalTotalLateUTimeMin = $grandTotalLateMin + $grandTotalUTimeMin;
+$final_TLUHr = floor($finalTotalLateUTimeMin / 60);
+$final_TLUMin = $finalTotalLateUTimeMin % 60;
 
 ?>
 
@@ -718,30 +706,50 @@ Verified as to the prescribed office hours. <br />
   <p style="float: right; text-decoration-line: underline; font-size: 18px; font-variant: all-petite-caps; margin: 0px;">
   <?php
   
-    $adminData_stmt = $conn->prepare("SELECT do_id FROM personnels WHERE RFTag_id = :RFTag_id");
-    $adminData_stmt->execute([':RFTag_id' => $printALL_row['RFTag_id']]);
-    $adminData_row=$adminData_stmt->fetch();
-    
-    
-    $dept_off_stmt = $conn->prepare("SELECT officeHead_id FROM dept_offices WHERE do_id = :do_id");
-    $dept_off_stmt->execute([':do_id' => $adminData_row['do_id']]);
-    $do_row = $dept_off_stmt->fetch(); 
-    
-    
-    $officeHead_stmt = $conn->prepare("SELECT lname, fname, mname, suffix FROM personnels WHERE personnel_id = :personnel_id");
-    $officeHead_stmt->execute([':personnel_id' => $do_row['officeHead_id']]);
-    $oh_row=$officeHead_stmt->fetch();
-                 
-                                    if($oh_row['suffix']=="-")
-                                    {
-                                        
-                                    echo $oh_row['fname']." ".substr($oh_row['mname'], 0,1).". ".$oh_row['lname'];
-                                    
-                                    }else{
-                                        
-                                    echo $oh_row['fname']." ".substr($oh_row['mname'], 0,1).". ".$oh_row['lname']." ".$oh_row['suffix'];
-                                    
-                                    }  
+    // 1. Safely get the RFTag_id (fallback to null if missing)
+    $rfTagId = $printALL_row['RFTag_id'] ?? null;
+
+    if ($rfTagId) {
+        $adminData_stmt = $conn->prepare("SELECT do_id FROM personnels WHERE RFTag_id = :RFTag_id");
+        $adminData_stmt->execute([':RFTag_id' => $rfTagId]);
+        $adminData_row = $adminData_stmt->fetch();
+        
+        // 2. Check if admin data was found and has a department ID
+        if ($adminData_row && !empty($adminData_row['do_id'])) {
+            
+            $dept_off_stmt = $conn->prepare("SELECT officeHead_id FROM dept_offices WHERE do_id = :do_id");
+            $dept_off_stmt->execute([':do_id' => $adminData_row['do_id']]);
+            $do_row = $dept_off_stmt->fetch(); 
+            
+            // 3. Check if the department has an assigned Office Head ID
+            if ($do_row && !empty($do_row['officeHead_id'])) {
+                
+                $officeHead_stmt = $conn->prepare("SELECT lname, fname, mname, suffix FROM personnels WHERE personnel_id = :personnel_id");
+                $officeHead_stmt->execute([':personnel_id' => $do_row['officeHead_id']]);
+                $oh_row = $officeHead_stmt->fetch();
+                
+                // 4. Finally, check if the Office Head record actually exists in the database!
+                if ($oh_row) {
+                    
+                    // Safely get the middle initial
+                    $mnameInitial = !empty($oh_row['mname']) ? substr($oh_row['mname'], 0, 1) . "." : "";
+                    
+                    if(empty($oh_row['suffix']) || $oh_row['suffix'] == "-") {
+                        echo $oh_row['fname'] . " " . $mnameInitial . " " . $oh_row['lname'];
+                    } else {
+                        echo $oh_row['fname'] . " " . $mnameInitial . " " . $oh_row['lname'] . " " . $oh_row['suffix'];
+                    } 
+                    
+                } else {
+                    // Fallback if the Office Head's profile was deleted from the system
+                    echo "RECORD MISSING"; 
+                }
+            } else {
+                // Fallback if the department has no assigned head
+                echo "NO HEAD ASSIGNED"; 
+            }
+        }
+    }
     ?>
   
   </p> <br /> <br /> 

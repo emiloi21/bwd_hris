@@ -5,7 +5,6 @@ include('session.php');
 include('header_print.php');
 ?>
 
- 
 <body>
  
 <table style="width: 100%;">
@@ -41,12 +40,15 @@ include('header_print.php');
                           <tbody>
                           
                           <?php
-                          $printEmpStat_query = $conn->query("SELECT empStat_id, emp_stat_name FROM emp_status WHERE status='Active'") or die(mysql_error());
-                          while ($printES_row=$printEmpStat_query->fetch())
-                          { ?>
+                          // Removed deprecated 'or die(mysql_error())'
+                          $printEmpStat_query = $conn->query("SELECT empStat_id, emp_stat_name FROM emp_status WHERE status='Active'");
+                          
+                          if($printEmpStat_query) {
+                              while ($printES_row = $printEmpStat_query->fetch()) { 
+                          ?>
                          
                             <tr>
-                            <td><?php echo $printES_row['emp_stat_name']; ?></td>
+                            <td><?php echo htmlspecialchars($printES_row['emp_stat_name']); ?></td>
                             
                             <td>
                             <?php
@@ -55,26 +57,39 @@ include('header_print.php');
                             $finalExManLevelCtr=0;
                             $finalThirdLevelCtr=0;
                             
-                            $empStatCtr_query = $conn->query("SELECT gass_id FROM personnels WHERE empStat_id='$printES_row[empStat_id]'") or die(mysql_error());
-                            while($lvlCtr_row=$empStatCtr_query->fetch()){
-                                
-                                
-                                    $LevelCtr_query = $conn->query("SELECT level FROM gass WHERE gass_id='$lvlCtr_row[gass_id]'") or die(mysql_error());
-                                    $levelCtr_row=$LevelCtr_query->fetch();
-                                   
-                                    
-                                    if($levelCtr_row['level']==="First Level"){
-                                        $finalFirstLevelCtr=$finalFirstLevelCtr+1;
-                                    }elseif($levelCtr_row['level']==="Second Level"){
-                                        $finalSecondLevelCtr=$finalSecondLevelCtr+1;
-                                    }elseif($levelCtr_row['level']==="Executive / Managerial"){
-                                        $finalExManLevelCtr=$finalExManLevelCtr+1;
-                                    }elseif($levelCtr_row['level']==="Third Level"){
-                                        $finalThirdLevelCtr=$finalThirdLevelCtr+1;
-                                    }
+                            $empStatCtr_query = $conn->query("SELECT gass_id FROM personnels WHERE empStat_id='".$printES_row['empStat_id']."' AND (separation_date IS NULL OR separation_date = '')");
                             
-                            } 
-                            echo $empStatCtr_query->rowCount(); ?>
+                            if($empStatCtr_query) {
+                                while($lvlCtr_row = $empStatCtr_query->fetch()){
+                                    
+                                    $gass_id = $lvlCtr_row['gass_id'];
+                                    
+                                    // Only search the GASS table if they actually have a valid ID
+                                    if(!empty($gass_id) && $gass_id > 0) {
+                                        $LevelCtr_query = $conn->query("SELECT level FROM gass WHERE gass_id='$gass_id'");
+                                        $levelCtr_row = $LevelCtr_query->fetch();
+                                       
+                                        // SAFETY CHECK: Ensure the row exists before trying to read ['level']
+                                        if ($levelCtr_row) {
+                                            $level = $levelCtr_row['level'];
+                                            
+                                            if($level === "First Level"){
+                                                $finalFirstLevelCtr++;
+                                            }elseif($level === "Second Level"){
+                                                $finalSecondLevelCtr++;
+                                            }elseif($level === "Executive / Managerial"){
+                                                $finalExManLevelCtr++;
+                                            }elseif($level === "Third Level"){
+                                                $finalThirdLevelCtr++;
+                                            }
+                                        }
+                                    }
+                                } 
+                                echo $empStatCtr_query->rowCount(); 
+                            } else {
+                                echo "0";
+                            }
+                            ?>
                             </td>
                             
                             <td>
@@ -110,7 +125,10 @@ include('header_print.php');
                               
                             
                             
-                             <?php }  ?>
+                             <?php 
+                                } 
+                             }
+                             ?>
                            
                           </tbody>
                         </table>
@@ -122,5 +140,3 @@ include('header_print.php');
 
 </body>
 </html>
-       
-            

@@ -76,13 +76,13 @@ $shiftTotalCtr = $conn->query('SELECT COUNT(*) FROM shifts')->fetchColumn();
 $client_computerTotalCtr = $conn->query('SELECT COUNT(*) FROM client_computer')->fetchColumn(); 
 
 
-$perCtr_query = $conn->query("SELECT personnel_id FROM personnels WHERE separation_date IS NULL");
+$perCtr_query = $conn->query("SELECT personnel_id FROM personnels");
 $perCtr_all=$perCtr_query->rowCount();
 
-$perCtrMale_query = $conn->query("SELECT personnel_id FROM personnels WHERE sex='Male' AND separation_date IS NULL");
+$perCtrMale_query = $conn->query("SELECT personnel_id FROM personnels WHERE sex='Male'");
 $perCtrM_all=$perCtrMale_query->rowCount();
 
-$perCtrFemale_query = $conn->query("SELECT personnel_id FROM personnels WHERE sex='Female' AND separation_date IS NULL");
+$perCtrFemale_query = $conn->query("SELECT personnel_id FROM personnels WHERE sex='Female'");
 $perCtrF_all=$perCtrFemale_query->rowCount();
 
 $check_pass = $user_row['password'];

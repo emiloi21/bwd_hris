@@ -140,10 +140,17 @@
               
  
               <!-- JHS           -->
+              <?php
+              $current_personnel_img = trim((string)($subjK_row['img'] ?? ''));
+              if ($current_personnel_img === '') {
+                  $current_personnel_img = 'default_img.jpg';
+              }
+              ?>
+
               <?php if ($subjK_row) { ?>
               <div class="personnel-identity-card">
                 <div class="personnel-identity-body">
-                  <img class="personnel-identity-avatar" src="personnelImg/<?php echo htmlspecialchars($subjK_row['img']); ?>" alt="Personnel avatar" />
+                  <img class="personnel-identity-avatar" src="personnelImg/<?php echo htmlspecialchars($current_personnel_img); ?>" alt="Personnel avatar" />
                   <div>
                     <p class="personnel-identity-name">
                       <?php
@@ -190,14 +197,14 @@
                         <div class="col-md-6 mb-3">
                           <div class="image-panel">
                             <h6>Current Image</h6>
-                            <img class="image-frame" src="personnelImg/<?php echo htmlspecialchars($subjK_row['img']); ?>" alt="Current personnel image" />
+                            <img class="image-frame" src="personnelImg/<?php echo htmlspecialchars($current_personnel_img); ?>" alt="Current personnel image" />
                           </div>
                         </div>
 
                         <div class="col-md-6 mb-3">
                           <div class="image-panel">
                             <h6>New Image Preview</h6>
-                            <img class="image-frame" id="blah" src="personnelImg/<?php echo htmlspecialchars($subjK_row['img']); ?>" alt="Selected image preview" />
+                            <img class="image-frame" id="blah" src="personnelImg/<?php echo htmlspecialchars($current_personnel_img); ?>" alt="Selected image preview" />
                           </div>
                         </div>
                       </div>

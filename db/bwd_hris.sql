@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2026 at 05:01 PM
+-- Generation Time: Jun 29, 2026 at 11:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -209,7 +209,10 @@ CREATE TABLE `dept_offices` (
 --
 
 INSERT INTO `dept_offices` (`do_id`, `dept_office_name`, `officeHead_id`) VALUES
-(1, 'HR Office', 0);
+(1, 'Administrative and Finance Division', 0),
+(2, 'Commercial Division', 0),
+(4, 'Operation Division', 0),
+(5, 'Office of the General Manager', 0);
 
 -- --------------------------------------------------------
 
@@ -227,8 +230,34 @@ CREATE TABLE `designation` (
 --
 
 INSERT INTO `designation` (`des_id`, `des_name`) VALUES
-(1, 'Water Maintenance Man A'),
-(2, 'Customer Service Officer A');
+(1, 'Customer Service Officer A'),
+(2, 'Water Maintenance Man A'),
+(3, 'General Manager C'),
+(4, 'Cashier C'),
+(5, 'Division Manager C (Commercial)'),
+(6, 'Water Maintenance Man C'),
+(7, 'Water Resources Facilities Operator A'),
+(8, 'Water Maintenance Man B'),
+(9, 'Engineering Aide A'),
+(10, 'Water Resources Facilities Tender A'),
+(11, 'Customer Service Assistant A'),
+(12, 'Senior Water Maintenance Man A'),
+(13, 'Water Resources Operator B'),
+(14, 'Corporate Budget Specialist A'),
+(15, 'Water Utilities Management  Officer B'),
+(16, 'Water Utilities Facilities Operator A'),
+(18, 'Water Resources Facilities Technician'),
+(19, 'Water Maintenance Foreman'),
+(20, 'Senior Corporate Account Analyst'),
+(21, 'Water Resources Facilities Operator B'),
+(22, 'Meter Reader/Maintenance'),
+(23, 'Commercial Clerk'),
+(24, 'Administrative and Finance Aide'),
+(25, 'Pump Operator'),
+(26, 'Maintenance Man'),
+(27, 'Utility Worker'),
+(28, 'Commercial Aide'),
+(29, 'Industrial  Security Guard C');
 
 -- --------------------------------------------------------
 
@@ -248,13 +277,11 @@ CREATE TABLE `emp_status` (
 --
 
 INSERT INTO `emp_status` (`empStat_id`, `emp_stat_name`, `position_class`, `status`) VALUES
-(1, 'Part Timer', 'Career Positions', 'Active'),
-(2, 'Regular', 'Career Positions', 'Active'),
-(3, 'Contractual', 'Career Positions', 'Active'),
-(4, 'End Contract', 'Career Positions', 'Separated'),
-(5, 'Deceased', 'Career Positions', 'Separated'),
-(6, 'Resigned', 'Career Positions', 'Separated'),
-(7, 'Job Order', 'Career Positions', 'Active');
+(1, 'Permanent', 'Career Positions', 'Active'),
+(2, 'Resigned', 'Career Positions', 'Separated'),
+(4, 'JOB ORDER', '-', 'Active'),
+(5, 'CASUAL LABORERS', 'Non-Career Positions', 'Active'),
+(6, 'COTERMINOUS', '-', '-');
 
 -- --------------------------------------------------------
 
@@ -287,6 +314,91 @@ CREATE TABLE `gass` (
   `ratePerDay` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `gass`
+--
+
+INSERT INTO `gass` (`gass_id`, `gass_name`, `level`, `step`, `ratePerDay`) VALUES
+(1, 8, 'First Level', 3, 22832.00),
+(2, 16, 'Second Level', 2, 46152.00),
+(3, 26, 'Executive / Managerial', 2, 133870.00),
+(4, 4, 'First Level', 3, 17767.00),
+(5, 4, 'First Level', 1, 17506.00),
+(6, 5, 'First Level', 3, 18858.00),
+(7, 3, 'First Level', 3, 16732.00),
+(8, 8, 'First Level', 4, 23038.00),
+(10, 16, 'Second Level', 1, 45694.00),
+(11, 12, 'Second Level', 1, 33947.00),
+(12, 22, 'Second Level', 2, 82963.00),
+(13, 2, 'First Level', 1, 22432.00),
+(14, 6, 'First Level', 1, 19716.00),
+(15, 12, 'Second Level', 2, 34069.00),
+(16, 5, 'First Level', 1, 18581.00),
+(17, 5, 'First Level', 1, 18581.00),
+(18, 5, 'First Level', 2, 18581.00),
+(19, 5, 'First Level', 3, 18581.00),
+(20, 5, 'First Level', 4, 18581.00),
+(21, 5, 'First Level', 5, 18581.00),
+(22, 5, 'First Level', 6, 18581.00),
+(23, 5, 'First Level', 7, 18581.00),
+(24, 5, 'First Level', 8, 18581.00),
+(25, 18, 'Second Level', 1, 54371.00),
+(26, 18, 'Second Level', 2, 54371.00),
+(27, 18, 'Second Level', 3, 54371.00),
+(28, 18, 'Second Level', 4, 54371.00),
+(29, 18, 'Second Level', 5, 54371.00),
+(30, 18, 'Second Level', 6, 54371.00),
+(31, 18, 'Second Level', 7, 54371.00),
+(32, 18, 'Second Level', 8, 54371.00),
+(33, 14, 'Second Level', 1, 39141.00),
+(34, 14, 'Second Level', 2, 39141.00),
+(35, 14, 'Second Level', 3, 39141.00),
+(36, 14, 'Second Level', 4, 39141.00),
+(37, 14, 'Second Level', 5, 39141.00),
+(38, 14, 'Second Level', 6, 39141.00),
+(39, 14, 'Second Level', 7, 39141.00),
+(40, 14, 'Second Level', 8, 39141.00),
+(41, 11, 'Second Level', 1, 31820.00),
+(42, 11, 'Second Level', 2, 31820.00),
+(43, 11, 'Second Level', 3, 31820.00),
+(44, 11, 'Second Level', 4, 31820.00),
+(45, 11, 'Second Level', 5, 31820.00),
+(46, 11, 'Second Level', 6, 31820.00),
+(47, 11, 'Second Level', 7, 31820.00),
+(48, 11, 'Second Level', 8, 31820.00),
+(49, 15, 'Second Level', 1, 42178.00),
+(50, 15, 'Second Level', 2, 42178.00),
+(51, 15, 'Second Level', 3, 42178.00),
+(52, 15, 'Second Level', 4, 42178.00),
+(53, 15, 'Second Level', 5, 42178.00),
+(54, 15, 'Second Level', 6, 42178.00),
+(55, 15, 'Second Level', 7, 42178.00),
+(56, 15, 'Second Level', 8, 42178.00),
+(57, 4, 'First Level', 1, 17636.00),
+(58, 4, 'First Level', 2, 17636.00),
+(59, 4, 'First Level', 3, 17636.00),
+(60, 4, 'First Level', 4, 17636.00),
+(61, 4, 'First Level', 5, 17636.00),
+(62, 4, 'First Level', 6, 17636.00),
+(63, 4, 'First Level', 7, 17636.00),
+(64, 4, 'First Level', 8, 17636.00),
+(65, 6, 'First Level', 1, 19862.00),
+(66, 6, 'First Level', 2, 19862.00),
+(67, 6, 'First Level', 3, 19862.00),
+(68, 6, 'First Level', 4, 19862.00),
+(69, 6, 'First Level', 5, 19862.00),
+(70, 6, 'First Level', 6, 19862.00),
+(71, 6, 'First Level', 7, 19862.00),
+(72, 6, 'First Level', 8, 19862.00),
+(73, 1, 'First Level', 1, 14634.00),
+(74, 1, 'First Level', 2, 14634.00),
+(75, 1, 'First Level', 3, 14634.00),
+(76, 1, 'First Level', 4, 14634.00),
+(77, 1, 'First Level', 5, 14634.00),
+(78, 1, 'First Level', 6, 14634.00),
+(79, 1, 'First Level', 7, 14634.00),
+(80, 1, 'First Level', 8, 14634.00);
+
 -- --------------------------------------------------------
 
 --
@@ -310,7 +422,7 @@ CREATE TABLE `institution_preferences` (
 --
 
 INSERT INTO `institution_preferences` (`id`, `zip_code`, `logo`, `region`, `division`, `institution_name`, `address`, `emailAddress`, `contactNumber`) VALUES
-(1, '6107', '21173-binalbagan-wd-logo.png', 'NIR', '5', 'BINALBAGAN WATER DISTRICT', 'BINALBAGAN, NEGROS OCCIDENTAL', 'bwd@gmail.com', '(123) 456-7890');
+(1, '6107', '21173-binalbagan-wd-logo.png', 'NIR', '5', 'BINALBAGAN WATER DISTRICT', 'BINALBAGAN, NEGROS OCCIDENTAL', 'binalbaganwater@yahoo.com', '(123) 456-7890');
 
 -- --------------------------------------------------------
 
@@ -416,6 +528,13 @@ CREATE TABLE `leave_card` (
   `number_of_days` decimal(5,2) DEFAULT NULL COMMENT 'Number of leave days'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `leave_card`
+--
+
+INSERT INTO `leave_card` (`id`, `personnel_id`, `period_from`, `period_to`, `particulars`, `vl_earned`, `vl_with_pay`, `vl_without_pay`, `sl_earned`, `sl_with_pay`, `sl_without_pay`, `remarks`, `is_special_leave`, `created_from_application`, `date_from`, `date_to`, `number_of_days`) VALUES
+(1, 681, '2026-05-01', '2026-05-31', 'Month of May 2026', 1.250, 0.000, 0.000, 1.250, 0.000, 0.000, 'Monthly Leave Credits', 0, 0, '2026-05-01', '2026-05-31', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -433,6 +552,13 @@ CREATE TABLE `monthly_leave_credits_log` (
   `processed_date` datetime DEFAULT current_timestamp(),
   `processed_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `monthly_leave_credits_log`
+--
+
+INSERT INTO `monthly_leave_credits_log` (`id`, `personnel_id`, `year`, `month`, `vl_earned`, `sl_earned`, `leave_card_id`, `processed_date`, `processed_by`) VALUES
+(1, 681, 2026, 5, 1.250, 1.250, 1, '2026-06-15 14:58:09', 3);
 
 -- --------------------------------------------------------
 
@@ -505,7 +631,52 @@ CREATE TABLE `personnels` (
 --
 
 INSERT INTO `personnels` (`personnel_id`, `RFTag_id`, `personnel_id_code`, `shift_id`, `img`, `lname`, `fname`, `mname`, `suffix`, `age`, `sex`, `marital_status`, `bdMM`, `bdDD`, `bdYYYY`, `birth_place`, `address`, `email`, `personal_pnum`, `emergency_pnum`, `conPerson_lname`, `conPerson_fname`, `conPerson_mname`, `conPerson_relationship`, `do_id`, `des_id`, `sal_grade`, `sal_step`, `sal_level`, `rate_per_day`, `gass_id`, `empStat_id`, `eligibility`, `plantilla_num`, `appointment_date`, `separation_date`, `num_of_yrs`, `tin_num`, `gsis_num`, `pagibig_num`, `philHealth_num`, `monthly_salary`) VALUES
-(677, 'XYZ2TIC7KG', '100032', 0, 'xyz2tic7kg-gary-megel.jpg', 'MAGTOLIS', 'EMILIO', 'BEHASA', 'JR.', 0, '', '', '', '', '', '', '', '', '+639         ', '+639         ', '', '', '', '', 1, 2, 0, 0, 0, 0.00, 0, 2, '', '', '', NULL, 0, '   -   -   ', '    -   -   ', '   -   -   -   ', '  -         - ', NULL);
+(677, 'NRF182B0', '01-064', 1, '', 'BAYONA', 'REA', 'CHAVEZ', '-', 31, 'Female', 'Married', '12', '20', '1994', 'SORSOGON, SORSOGON', 'JESUSA YULO, BRGY. SAN TO ROSARIO BINALBAGAN, NEGROS OCCIDENTAL', 'reachavez76@yahoo.com', '+639369507870', '+639166058696', 'CHAVEZ', 'ROMILA ', '', 'Parent', 2, 1, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-013', '  /  /    ', '  /  /    ', 0, '472-897-984', '2004-950-961', '121-172-066-632', '11-025515344-7', 10000.000),
+(680, 'NRF69A0E', '023-03-006', 1, '', 'CLARENCE JUDE', 'CATALAN', 'MONTINOLA', '-', 27, 'Male', 'Single', '05', '09', '1999', 'BINALBAGAN, NEGROS OCCIDENTAL', 'NARRA CORNER MAHOGANY, MT. CARMEL BRGY. PROGRESO , BINALBAGAN, NEGROS OCCIDENTAL', 'clarencejudecatalan@gmail.com', '+639076566237', '+639166058738', ' CATALAN', 'REYNALDO', '', 'Parent', 1, 4, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-008', '  /  /    ', '  /  /    ', 0, '751-261-096', '2006-713-076', '121-322-975-069', '12-119756813-4', NULL),
+(681, 'NRFAE57F', '021-02-022', 0, '', 'ROGRIGUEZ', 'RIO', 'VIGNO', 'JR.', 34, 'Male', 'Married', '03', '02', '1992', 'BINALBAGAN, NEGROS OCCIDENTAL', 'BRGY. ENCLARO BINALBAGAN, NEGROS OCCIDENTAL', 'riorodriguezjr@yahoo.com', '+639915392013', '+639163191920', 'RODRIGUEZ', 'CHRISE MARIE', 'BERMUDEZ', 'Spouse', 4, 15, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-020', '  /  /    ', '  /  /    ', 0, '466-197-521', '2005-863-183', '121-120-090-805', '11-050645693-2', NULL),
+(682, 'NRFDC4D8', '003-12-001', 0, '', 'CHRISTOPHER', 'ARANDA', 'ELISAN', '-', 46, 'Male', 'Married', '01', '05', '1980', 'BINALBAGAN, NEGROS OCCIDENTAL', '3RD STREET BRGY. PROGRESO BINALBAGAN, NEGROS OCCIDENTAL', '', '+639908395010', '+639924030214', 'ARANDA', 'MA. LOURDES', '', 'Spouse', 4, 2, 0, 0, 0, 0.00, 8, 1, '', 'BINALBAGANWD-2019-031', '  /  /    ', '  /  /    ', 0, '931-642-866', '2001-676-129', '110-000-788-465', '15-900030545-7', NULL),
+(683, 'NRF03997', '992-01-002', 0, '', 'BAYLES', 'EUMARIE', 'TORRENTO', '-', 64, 'Male', 'Married', '01', '11', '1962', 'BACOLOD CITY, NEGROS OCCIDENTAL', 'VISTA ALEGRE BRGY. ENCLARO BINALBAGAN, NEGROS OCCIDENTAL', 'mbayles@yahoo.com', '+639         ', '+639         ', 'BAYLES', 'EMMILOU', '', '', 2, 1, 0, 0, 0, 0.00, 0, 1, '', '', '  /  /    ', '  /  /    ', 0, '156-724-691', '2001-676-153', '159-000-269-556', '11-000052710-6', NULL),
+(684, 'NRF30327', '001-07-004', 0, '', 'CAÑON', 'ANGIE BLAISE', 'PIGAR', '-', 46, 'Female', 'Married', '02', '03', '1980', 'BINALBAGAN, NEGROS OCCIDENTAL', 'BLOCK 2, LOT 3 BABY\'S BREATH RPHS DC 2 BRGY. ALIJIS BACOLOD CITY, NEGROS OCCIDENTAL', 'angieblaise247@yahoo.com', '+639933865009', '+63994400922 ', 'CAÑON', 'CLARK', 'GADACA', 'Spouse', 5, 3, 0, 0, 0, 0.00, 0, 6, '', '', '  /  /    ', '  /  /    ', 0, '923-900-479', '2001-676-353', '159-000-305-735', '19-000795588-3', NULL),
+(685, 'NRFE4CEB', '011-01-009', 0, '', 'GATPATAN', 'RHYAN', 'MANZANO', '-', 44, 'Male', 'Married', '12', '05', '1981', 'BINALBAGAN, NEGROS OCCIDENTAL', 'PRK. NYLON SHELL BRGY, CANMOROS BINALBAGAN, NEGROS OCCIDENTAL', 'rhyangatpatan@gmail.com', '+639638809098', '+639997441063', 'GATPATAN', 'DIONA ', '', 'Spouse', 4, 7, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-027', '  /  /    ', '  /  /    ', 0, '933-825-169', '2004-086-133', '121-164-937-602', '11-000122148-5', NULL),
+(686, 'NRF169A5', '011-01-008', 0, '', 'GAMPOSILAO', 'NARCISO', 'CALLAO', 'JR.', 51, 'Male', 'Married', '09', '16', '1974', 'BINALBAGAN, NEGROS OCCIDENTAL', 'PRK. NYLON SHELL BRGY, CANMOROS BINALBAGAN, NEGROS OCCIDENTAL', '', '+639         ', '+639662635804', 'GAMPOSILAO', 'ROSALIA ', '', '', 4, 6, 0, 0, 0, 0.00, 0, 1, '', '', '  /  /    ', '  /  /    ', 0, '477-839-828', '2004-086-132', '121-164-936-283', '11-000123922-8', NULL),
+(687, 'NRF00FC0', '009-07-010', 0, '', 'GEBELA', 'ARANTE ', 'CINCO', '-', 49, 'Male', 'Married', '06', '12', '1977', 'BRGY. AGUISAN HIMAMAYLAN CITY, NEGROS OCCIDENTAL', 'PRK. SEVERO BRGY. SANTO ROSARIO BINALBAGAN, NEGROS OCCIDENTAL', '', '+639454264514', '+639         ', 'PARRENO', 'RIZZA ', '', '', 4, 6, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-035', '  /  /    ', '  /  /    ', 0, '938-370-065', '2003-956-817', '121-019-581-820', '11-000116101-6', NULL),
+(688, 'NRF7A57F', '011-07-011', 0, '', 'GEMARINO', 'VIRGILIO', 'ESPAÑOLA', 'JR.', 39, 'Male', 'Married', '02', '24', '1987', 'BINALBAGAN, NEGROS OCCIDENTAL', 'PUROK BONGAINVILLA BRGY., ENCLARO, BINALBAGAN NEGROS OCCIDENTAL', '', '+639102462841', '+639936416933', 'GEMARINO', 'LOVELLA', '', 'Spouse', 4, 8, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-033', '  /  /    ', '  /  /    ', 0, '929-990-020', '2004-129-046', '121-029-624-045', '11-000127277-2', NULL),
+(689, 'NRFB73E7', '021-10-012', 0, '', 'GONZALES', 'JUN VINCENT', 'BASI', '-', 40, 'Male', 'Single', '03', '13', '1986', 'BINALBAGAN, NEGROS OCCIDENTAL', '6TH STREET BRGY. PAGLAUM BINALBAGAN, NEGROS OCCIDENTAL', 'junvincentgonzales@gmail.com', '+639120956935', '+639855215822', 'GONZALES', 'REBECCA', '', '', 4, 9, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-041', '  /  /    ', '  /  /    ', 0, '412-513-481', '2005-965-497', '121-166-476-476', '23-014500003-8', NULL),
+(690, 'NRFB68A9', '005-08-013', 0, '', 'GOTERA', 'JUSTICE', 'GARZOLA', '-', 52, 'Male', 'Married', '02', '26', '1974', 'BINALBAGAN, NEGROS OCCIDENTAL', 'BLUMENTRIT ST. BRGY. STO. ROSARIO BINALBAGAN, NEGROS OCCIDENTAL', '', '+639460762412', '+639941484581', 'GOTERA', 'MYLA', '', 'Spouse', 4, 10, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-039', '  /  /    ', '  /  /    ', 0, '932-003-094', '2003-956-819', '159-000-315-784', '11-000091064-3', NULL),
+(691, 'NRF5741E', '010-03-014', 0, '', 'JORDAN', 'JACKEREN', 'ROTO', '-', 62, 'Female', 'Married', '09', '20', '1963', 'BINALBAGAN, NEGROS OCCIDENTAL', 'MAGNOLIA BRGY. SAN VICENTE BINALBAGAN, NEGROS', 'jackierj@yahoo.com', '+639210055386', '+639293871591', 'ROTO', 'NINITA ', '', 'Parent', 2, 11, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-031', '  /  /    ', '  /  /    ', 0, '933-306-248', '2004-086-134', '121-064-552-195', '11-000118006-1', NULL),
+(692, 'NRF7212F', '005-08-015', 0, '', 'NACIONAL', 'EMMANUEL', 'GUINOO', '-', 63, 'Male', 'Married', '05', '09', '1963', 'BINALBAGAN, NEGROS OCCIDENTAL', 'HDA. YUSAY BRGY. SAN JUAN BINALBAGAN, NEGROS OCCIDENTAL', '', '+639300396532', '+639633031652', 'NACIONAL', 'MARY JEAN', '', 'Spouse', 1, 29, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-025', '  /  /    ', '  /  /    ', 0, '935-596-142', '2003-956-832', '159-000-315-795', '11-025069032-0', NULL),
+(693, 'NRF66576', '009-07-016', 0, '', 'NORBE', 'JOSE', 'PIOLA', '-', 61, 'Male', 'Married', '02', '24', '1965', 'BINALBAGAN, NEGROS OCCIDENTAL', 'PRK.4, BRGY. SAN JOSE BINALBAGAN, NEGROS OCCIDENTAL', '', '+639816455752', '+639816455752', 'NORBE', 'LORE MAE', '', 'Child', 4, 7, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-025', '  /  /    ', '  /  /    ', 0, '949-166-398', '2003-956-834', '121-027-755-053', '11-200699161-3', NULL),
+(694, 'NRF9437F', '002-03-017', 0, '', 'OLMEDO', 'VINCENT', 'YULO', '-', 53, 'Male', 'Married', '08', '02', '1972', 'BINALBAGAN, NEGROS OCCIDENTAL', 'VILLA STA. MARIA BRGY. SANTO ROSARIO, BINALBAGAN, NEGROS OCCIDENTAL', 'olmedo_vincent@yahoo.com', '+639092786671', '+639171101412', '', '', '', 'Relative', 4, 12, 0, 0, 0, 0.00, 0, 1, '', '', '  /  /    ', '  /  /    ', 0, '927-327-169', '2001-676-308', '159-000-294-547', '19-000795585-9', NULL),
+(695, 'NRF35EF9', '005-08-018', 0, '', 'OSORIO', 'RICK JOHN', 'AQUINO', '-', 46, 'Male', 'Married', '07', '31', '1979', 'BINALBAGAN, NEGROS OCCIDENTAL', 'CARMEN STREET, BRGY., SAN PEDRO BINALBAGAN, NEGROS OCCIDENTAL', '', '+639         ', '+639996975173', ' OSORIO', 'ANNA LORRAINE', '', 'Spouse', 4, 12, 0, 0, 0, 0.00, 0, 1, '', '', '  /  /    ', '  /  /    ', 0, '934-892-119', '2003-956-836', '159-000-315-804', '11-000091065-1', NULL),
+(696, 'NRFB8977', '011-01-019', 0, '', 'PADILLA', 'ROMEL', 'GARZOLA', '-', 44, 'Male', 'Married', '07', '29', '1981', 'SAN JOSE SIPALAY CITY, NEGROS OCCIDENTAL', 'PRK. AGUIHIS BRGY, CANMOROS BINALBAGAN, NEGROS OCCIDENTAL', 'romelpadilla29@gmail.com', '+639463184970', '+639692743724', 'PADILLA', 'KATHERINE', '', 'Spouse', 4, 13, 0, 0, 0, 0.00, 0, 0, '', 'BINALBAGANWD-2019-029', '  /  /    ', '  /  /    ', 0, '928-382-541', '2004-086-135', '121-015-331-515', '19-090557739-9', NULL),
+(697, 'NRF97287', '011-07-020', 0, '', 'PINEDA', 'JOENEL', 'GAD', '-', 44, 'Male', 'Married', '09', '23', '1981', 'BINALBAGAN, NEGROS OCCIDENTAL', 'PASCUAL FERMIZA BRGY. SANTOP ROSARIO BINALBAGAN, NEGROS OCCIDENTAL', 'jjoenilpineda81@gmail.com', '+639484521107', '+639190905577', 'PINEDA', 'MA. CORAZON', '', 'Spouse', 4, 10, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-040', '  /  /    ', '  /  /    ', 0, '411-490-105', '2004-129-045', '121-029-622-337', '11-201270225-9', NULL),
+(698, 'NRF771F6', '983-07-021', 0, '', 'QUILANTANG', 'ROSEMARIE', 'JALME', '-', 64, 'Female', 'Married', '04', '11', '1962', 'JANIUAY, ILOILO CITY', '2ND STREET, PRK., CAMIA BRGY. PAGLAUM', '', '+639497073340', '+639622317952', 'QUILANTANG', 'BEN', '', 'Spouse', 1, 14, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-004', '  /  /    ', '  /  /    ', 0, '156-724-770', '1567-247-70 ', '159-000-270-013', '11-000052739-4', NULL),
+(699, 'NRF37A2F', '055-08-023', 0, '', 'SALAZAR', 'DANILO', 'GUZMAN', '-', 56, 'Male', 'Married', '05', '09', '1970', 'BINALBAGAN, NEGROS OCCIDENTAL', 'PRK,. INGKOY PALMA BRGY. SAN VICENTE BINALBAGAN, NEGROS OCCIDENTAL', '', '+639469830432', '+639285492164', 'SALAZAR', 'PORTIA', '', 'Spouse', 4, 18, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-030', '  /  /    ', '  /  /    ', 0, '923-497-864', '2003-956-839', '159-000-315-816', '11-000091078-3', NULL),
+(700, 'NRF4A190', '020-01-025', 0, '', 'SALINAS', 'JENNY', 'PEDAN', '-', 28, 'Male', 'Single', '01', '12', '1998', 'HIMAMAYLAN CITY, NEGROS OCCIDENTAL', '1195 VITA CHOCO, BRGY., SAN VICENTE BINALBAGAN, NEGROS OCCIDENATL', 'sjhennaii@gmail.com', '+639126600719', '+639460292300', 'SALINAS', 'ALEX', '', 'Parent', 1, 20, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-006', '  /  /    ', '  /  /    ', 0, '460-292-300', '2005-754-432', '121-266-456-949', '11-025696937-8', NULL),
+(701, 'NRFFE668', '005-08-024', 0, '', 'SARAD', 'ARLIE', 'MONCADA', '-', 53, 'Male', 'Married', '05', '19', '1973', 'BINALBAGAN, NEGROS OCCIDENTAL', 'PRK. GREEN SHELL BRGY, CANMOROS BINALBAGAN, NEGROS OCCIDENTAL', '', '+639503850171', '+639093069905', 'SARAD', 'JOHN MICHAEL', '', 'Child', 4, 19, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-021', '  /  /    ', '  /  /    ', 0, '923-503-378', '2003-956-841', '159-000-315-827', '11-000091071-6', NULL),
+(702, 'NRFDBD47', '002-09-026', 0, '', 'TALAVER', 'ELEUTERIO', 'GONZALES', 'JR.', 59, 'Male', 'Married', '08', '07', '1966', 'ISABELA, NEGROS OCCIDENTAL', 'VISTA ALEGRE BRGY. ENCLARO BINALBAGAN NEGROS OCCIDENTAL', '', '+639911858768', '+639266630128', 'TALAVER', 'ANA MARIETA', '', 'Spouse', 4, 7, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-029', '  /  /    ', '  /  /    ', 0, '429-709-417', '2001-676-151', '121-098-174-700', '19-000795594-8', NULL),
+(703, 'NRF177A0', '007-08-027', 0, '', 'VAILOCES', 'NATHANIEL', 'PENDON', '-', 44, 'Male', 'Widowed', '12', '11', '1981', 'BINALBAGAN, NEGROS OCCIDENTAL', 'SITIO ALO, BRGYU. ENCLARO BINALBAGAN, NEGROS OCCIDENTAL', '', '+639285492845', '+639567685270', 'VAILOCES', 'MARY LYNNIEL', '', '', 4, 10, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-038', '  /  /    ', '  /  /    ', 0, '944-530-801', '2003-956-845', '159-000-338-485', '11-000105012-5', NULL),
+(704, 'NRF3AEB9', '011-01-028', 0, '', 'VERDE', 'ALADINON ARJOHN', 'AMANTILLO', '-', 47, 'Male', 'Single', '11', '28', '1978', 'BINALBAGAN, NEGROS OCCIDENTAL', 'BGRY. ENCLARO BINALBAGAN, NEGROS OCCIDENATAL', '', '+639503986920', '+639668839076', 'SAZON', 'SHERYL', '', '', 4, 6, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-036', '  /  /    ', '  /  /    ', 0, '466-316-470', '2004-086-136', '121-172-153-913', '11-000122149-3', NULL),
+(705, 'NRF9D31E', '007-08-029', 0, '', 'VILLATURA', 'VOLTAIRE ANTHONY', 'SIM', '-', 57, 'Male', 'Married', '06', '13', '1969', 'CEBU CITY', '577 3RD STREET, BRGY. PROGRESO BINALBAGAN, NEGROS OCCIDENTAL', '', '+639496268517', '+639497577270', 'VILLATURA', 'SHELYN', '', 'Spouse', 4, 21, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-028', '  /  /    ', '  /  /    ', 0, '919-733-283', '2003-956-847', '159-000-338-496', '11-000105111-7', NULL),
+(706, 'NRFE028E', '025-07-032', 0, '', 'DEOCADES', 'JOY ', 'DIAZ', '-', 25, 'Female', 'Single', '12', '14', '2000', 'BACOLOD CITY, NEGROS OCCIDENTAL', '638 ADORADA PAGLAUM 1, BRGY. PAGLAUM BINALBAGAN, NEGROS OCCIDENTAL', 'jydiazdeocades@gmail.com', '+639454273825', '+639814071951', 'DINERO', 'LIAN ', 'DIAZ', 'Relative', 1, 24, 0, 0, 0, 0.00, 0, 5, '', '', '  /  /    ', '  /  /    ', 0, '627-685-774', '2006-713-076', '121-322-975-069', '11-251764056-8', NULL),
+(707, 'NRF11B67', '025-07-031', 1, '', 'BALINDRES', 'ANALONA', 'FIGUEROA', '-', 44, 'Female', 'Single', '04', '27', '1982', 'BINALBAGAN, NEGROS OCCIDENTAL', 'ZONE 2, BRGY. BIAO, BINALBAGAN NEGROS OCCIDENTAL', 'balindresanalona@gmail.com', '+639276002499', '+639283048368', 'SALDE', 'ANA JEAN ', '', 'Relative', 2, 23, 0, 0, 0, 0.00, 0, 5, '', '', '  /  /    ', '  /  /    ', 0, '251-306-753', '2006-676-574', '121-096-720-05 ', '03-050307150-5', NULL),
+(708, 'NRFA5384', '021-10-033', 1, '', 'DOCTO', 'RONNEL', 'TAJONERA', '-', 33, 'Male', 'Single', '12', '03', '1992', 'BINALBAGAN, NEGROS OCCIDENTAL', 'SITIO PASIL, BRGY. ENCALRO BINALBAGAN, NEGROS OCCIDENTAL', 'ronneldocto930@gmail.com', '+639153263506', '+639704621359', ' DOCTO', 'MICHAEL JOHN ', 'TAJONERA', 'Relative', 2, 22, 0, 0, 0, 0.00, 0, 5, '', '', '  /  /    ', '  /  /    ', 0, '508-676-553', '2005-965-493', '121-294-044-475', '11-251756813-1', NULL),
+(709, 'NRF41560', '021-10-034', 0, '', 'MARTE', 'ROMELO', 'ZAMORA', '-', 42, 'Male', 'Married', '02', '12', '1984', 'BINALBAGAN, NEGROS OCCIDENTAL', 'ZONE 2, BRGY. PAYAO, BINALBAGAN NEGROS OCCIDENTAL', 'romelomarteg@yahoo.com', '+639123054635', '+639913808128', ' MARTE', 'NOEMI ', '', 'Spouse', 4, 25, 0, 0, 0, 0.00, 0, 5, '', '', '  /  /    ', '  /  /    ', 0, '946-202-776', '1120-266-067', '121-307-351-040', '11-202660677-5', NULL),
+(710, 'NRF468E0', '021-10-035', 0, '', 'NACIONAL', 'JEFRANCE', 'YURO', '-', 37, 'Male', 'Married', '02', '17', '1989', 'BINALBAGAN, NEGROS OCCIDENTAL', 'BRGY. SANJUAN BINALBAGAN, NEGROS OCCIDENTAL', '', '+639128473488', '+639096425443', 'NACIONAL', 'RYNE NACIONA', '', 'Spouse', 2, 22, 0, 0, 0, 0.00, 0, 5, '', '', '  /  /    ', '  /  /    ', 0, '417-594-177', '2005-965-499', '121-293-818-851', '11-025515341-2', NULL),
+(711, 'NRF12D80', '021-03-036', 0, '', 'NORBE', 'REYNALDO', 'PIOLA', '-', 63, 'Male', 'Single', '02', '06', '1963', 'BINALBAGAN, NEGROS OCCIDENTAL', 'PRK. 4, BRGY. SAN JOSE BINALBAGAN, NEGROS OCCIDENTAL', '', '+639         ', '+639815650836', 'LOREMAE NORBE', 'LOREMAE ', '', 'Relative', 4, 25, 0, 0, 0, 0.00, 0, 5, '', '', '  /  /    ', '  /  /    ', 0, '943-501-701', '2005-898-365', '121-283-459-744', '11-050003240-5', NULL),
+(712, 'NRFE9273', '011-07-037', 0, '', 'ORDANIEL', 'IVONNE REY', 'BANDIES', '-', 42, 'Male', 'Married', '09', '24', '1983', 'BINALBAGAN, NEGROS OCCIDENTAL', 'ZONE 6,BRGY. PAYAO BINALBAGAN, NEGROS OCCIDENTAL', '', '+639074674507', '+639707516772', 'RENDON', 'JESSEL', '', 'Spouse', 4, 25, 0, 0, 0, 0.00, 0, 5, '', '', '  /  /    ', '  /  /    ', 0, '935-843-706', '2004-129-047', '121-029-622-303', '11-000127279-9', NULL),
+(713, 'NRFE52AA', '021-10-038', 0, '', 'PADERES', 'JOHN MICHAEL', 'GEBELA', '-', 36, 'Male', 'Married', '12', '04', '1989', 'BINALBAGAN, NEGROS OCCIDENTAL', 'SAN GREGORIO STREET, BRGY. SANTO ROSARIO, BINALBAGAN NEGROS OCCIDENTAL', '', '+639076818742', '+639687081848', 'CASTOR', 'DAWN STAR ', '', '', 2, 22, 0, 0, 0, 0.00, 0, 5, '', '', '  /  /    ', '  /  /    ', 0, '500-037-657', '2005-965-501', '121-294-084-785', '11-025522585-5', NULL),
+(714, 'NRFF7EBF', '011-07-039', 0, '', 'PAMEROYAN', 'CHRISTOPHER', 'GARPA', '-', 47, 'Male', 'Married', '09', '03', '1978', 'BRGY. AGUISAN HIMAMAYLAN CITY, NEGROS OCCIDENTAL', 'SITIO, PANTALAN BRGY. SANTO ROSARIO, BINALBAGAN, NEGROS OCCIDENTAL', '', '+639482577571', '+639947845841', 'PAMEROYAN', 'MARRITESS ', '', 'Spouse', 4, 25, 0, 0, 0, 0.00, 0, 5, '', '', '  /  /    ', '  /  /    ', 0, '298-877-531', '2004-129-042', '121-029-597-571', '11-201365981-0', NULL),
+(715, 'NRF33BCE', '021-10-040', 0, '', 'YULO', 'ALLEN', 'CARPENTERO', '-', 38, 'Male', 'Married', '01', '13', '1988', 'BINALBAGAN, NEGROS OCCIDENTAL', 'CARMEN STREET, BRGY., PROGRESO BINALBAGAN, NEGROS OCCIDENTAL', '', '+639         ', '+639197369124', 'PINEDA', 'AMYJEAN ', '', 'Spouse', 4, 26, 0, 0, 0, 0.00, 0, 5, '', '', '  /  /    ', '  /  /    ', 0, '072-726-480', '2005-706-856', '121-299-053-333', '11-000141322-8', NULL),
+(716, 'NRF4920B', '021-10-041', 0, '', 'YULO', 'JESUS', 'SEGUIDO', '-', 46, 'Male', 'Married', '09', '05', '1979', 'BINALBAGAN, NEGROS OCCIDENTAL', 'DON YULO STREET, BRGY. SAN PEDRO, BINALBAGAN NEGROS OCCIDENTAL', 'jesusgboyyulo@yahoo.com', '+639461127551', '+639214506513', ' YULO', 'MARY GRACE MICHELLE', '', 'Spouse', 4, 25, 0, 0, 0, 0.00, 0, 5, '', '', '  /  /    ', '  /  /    ', 0, '466-317-365', '2005-965-562', '121-305-699-146', '11-000141323-6', NULL),
+(717, 'NRF8B433', '025-10-001', 0, '', 'ESPARAGOZA', 'FRITZ', 'CARBAQUIL', '-', 33, '', 'Single', '10', '22', '1992', 'BINALBAGAN, NEGROS OCCIDENTAL', 'PRK. AGUIHIS BRGY, CANMOROS BINALBAGAN, NEGROS OCCIDENTAL', '', '+639812104718', '+639812104718', ' BUDIO', 'CRISSHA', '', 'Spouse', 4, 26, 0, 0, 0, 0.00, 0, 4, '', '', '  /  /    ', '  /  /    ', 0, '   -   -   ', '0736-519-687', '121-285-501-586', '11-025567979-1', NULL),
+(718, 'NRFC6CFE', '025-10-002', 0, '', 'LACSON', 'JOHN IVAN ', 'PEROCHO', '-', 41, 'Male', 'Married', '07', '21', '1984', 'BINALBAGAN, NEGROS OCCIDENTAL', 'ZONE 2, BRGY. PAYAO, BINALBAGAN NEGROS OCCIDENTAL', '', '+639549808520', '+639278384561', 'LACSON', 'MARY JANE ', '', 'Spouse', 4, 25, 0, 0, 0, 0.00, 0, 4, '', '', '  /  /    ', '  /  /    ', 0, '456-276-348', '0746-560-082', '   -   -   -   ', '  -         - ', NULL),
+(719, 'NRFBBFCA', '024-11-003', 0, '', 'PASTOR', 'JOHN SPENCER', 'MADRIGALEJO', '-', 27, 'Male', 'Single', '06', '25', '1998', 'HIMAMAYLAN CITY, NEGROS OCCIDENTAL', 'PUROK 7, BRGY. PALAYOG, HINIGARAN, NEGROS OCCIDENTAL', 'pastorjohnspencermadregalejo@gmail.com', '+639982155319', '+639516943418', 'PASTOR', 'GLENDA ', '', 'Parent', 2, 22, 0, 0, 0, 0.00, 0, 4, '', '', '  /  /    ', '  /  /    ', 0, '   -   -   ', '0744-707-795', '   -   -   -   ', '  -         - ', NULL),
+(720, 'NRF03986', '024-11-004', 0, '', 'PERDENIA', 'JUNNIT', 'PITONG', '-', 33, 'Male', 'Single', '11', '09', '1992', 'BINALBAGAN, NEGROS OCCIDENTAL', '530 2ND STREET BRGY. PROGRESO BINALBAGAN, NEGROS OCCIDENTAL', 'perdeniajunnit@gmail.com', '+639157141937', '+639453855399', 'CUAYCONG', 'MELODY ', '', 'Spouse', 4, 26, 0, 0, 0, 0.00, 0, 4, '', '', '  /  /    ', '  /  /    ', 0, '   -   -   ', '0744-707-795', '   -   -   -   ', '  -         - ', NULL),
+(721, 'NRF55320', '025-07-005', 0, '', 'SUANQUE', 'SURAYA', 'REYES', '-', 46, 'Female', 'Married', '05', '21', '1980', 'ISABELA, NEGROS OCCIDENTAL', 'PRK. PUNAW BRGY, CANMOROS BINALBAGAN, NEGROS OCCIDENTAL', '', '+639621262019', '+639543195345', 'SUANQUE', 'ADONIS ', '', 'Spouse', 1, 27, 0, 0, 0, 0.00, 0, 5, '', '', '  /  /    ', '  /  /    ', 0, '777-000-245', '3370-665-211', '   -   -   -   ', '21-050028037-3', NULL),
+(722, 'NRFAF4DF', '025-10-006', 0, '', 'TORRENO', 'JEFFERSON', 'GERONAGA', '-', 28, 'Male', 'Single', '10', '31', '1997', 'BINALBAGAN, NEGROS OCCIDENTAL', 'KAUSWAGAN VILLAGE, BRGY. PROGRESO, BINALBAGAN, NEGROS OCCIDENTAL', 'geronagajp@gmail.com', '+639917441778', '+639481322983', 'TORRENO', 'CORAZON', 'GERONAGA', 'Parent', 2, 28, 0, 0, 0, 0.00, 0, 4, '', '', '  /  /    ', '  /  /    ', 0, '346-645-593', '0735-734-146', '121-198-450-651', '12-119845065-1', NULL),
+(723, 'NRFF6974', '019-07-007', 0, '', 'TRANSFIERO', 'JUNAR', 'MAPARE', '-', 43, 'Male', '', '06', '13', '1983', 'BINALBAGAN, NEGROS OCCIDENTAL', 'SITIO PUCATOD, BRGY. PAYAO, BINALBAGAN, NEGROS OCCIDENTAL', '', '+639283210608', '+639852176144', 'CORDERO', 'FREYLN ', '', 'Spouse', 4, 25, 0, 0, 0, 0.00, 0, 4, '', '', '  /  /    ', '  /  /    ', 0, '932-195-367', '0734-194-855', '   -   -   -   ', '11-050285050-4', NULL),
+(724, 'NRFD158E', '992-08-007', 0, '', 'COSAS', 'RUEL', 'ESPIRITU', '-', 59, 'Male', 'Married', '06', '09', '1967', 'BINALBAGAN, NEGROS OCCIDENTAL', 'PUROK PUNAY BRGY. PAGLAUM BINALBAGAN, NEGROS OCCIDENTAL', 'ruelcosas.1967@gmail.com', '+639283261401', '+639454077306', ' COSAS', 'JOHANNA ', '', 'Spouse', 2, 5, 0, 0, 0, 0.00, 0, 1, '', 'BINALBAGANWD-2019-011', '  /  /    ', '  /  /    ', 0, '156-724-705', '2001-676-302', '159-000-269-979', '11-000052724-6', NULL);
 
 -- --------------------------------------------------------
 
@@ -522,6 +693,13 @@ CREATE TABLE `personnel_educ_bg` (
   `year_grad` varchar(25) NOT NULL,
   `school_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `personnel_educ_bg`
+--
+
+INSERT INTO `personnel_educ_bg` (`eb_id`, `personnel_id`, `degree`, `course_details`, `units`, `year_grad`, `school_name`) VALUES
+(1, 677, 'Masters', '', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -576,7 +754,52 @@ CREATE TABLE `personnel_file_folders` (
 --
 
 INSERT INTO `personnel_file_folders` (`folder_id`, `personnel_id`, `folder_name`, `folder_slug`, `is_system_201`, `date_created`) VALUES
-(1, 677, '201-files', '201-files', 1, '2026-06-26 07:38:47');
+(1, 707, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(2, 683, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(3, 677, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(4, 684, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(5, 682, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(6, 680, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(7, 724, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(8, 706, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(9, 708, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(10, 717, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(11, 686, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(12, 685, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(13, 687, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(14, 688, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(15, 689, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(16, 690, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(17, 691, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(18, 718, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(19, 709, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(20, 692, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(21, 710, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(22, 693, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(23, 711, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(24, 694, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(25, 712, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(26, 695, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(27, 713, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(28, 696, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(29, 714, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(30, 719, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(31, 720, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(32, 697, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(33, 698, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(34, 681, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(35, 699, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(36, 700, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(37, 701, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(38, 721, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(39, 702, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(40, 722, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(41, 723, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(42, 703, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(43, 704, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(44, 705, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(45, 715, '201-files', '201-files', 1, '2026-06-26 07:37:05'),
+(46, 716, '201-files', '201-files', 1, '2026-06-26 07:37:05');
 
 -- --------------------------------------------------------
 
@@ -975,6 +1198,13 @@ CREATE TABLE `service_record` (
   `separate_cause` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `service_record`
+--
+
+INSERT INTO `service_record` (`sr_id`, `personnel_id`, `maid_lname`, `maid_fname`, `maid_mname`, `appointDate_status`, `serv_date_from`, `serv_date_to`, `roa_designation`, `roa_status`, `monthly_salary`, `annual_salary`, `office_appointment`, `separate_date`, `separate_cause`) VALUES
+(1, 677, 'Bayona', 'Rea', 'Chavez', '', '2026-01-10', '2026-02-25', 'Customer Service Officer A', 'Permanent', 10000.000, 120000.000, 'Commercial Division', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -987,6 +1217,13 @@ CREATE TABLE `shifts` (
   `shift_name` varchar(255) NOT NULL,
   `type` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `shifts`
+--
+
+INSERT INTO `shifts` (`shift_id`, `do_id`, `shift_name`, `type`) VALUES
+(1, 2, 'Regular 8:00 a.m. - 5:00 p.m.', 'Regular Shift');
 
 -- --------------------------------------------------------
 
@@ -1074,6 +1311,22 @@ CREATE TABLE `time_schedules` (
   `shift_id` int(11) NOT NULL,
   `type` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `time_schedules`
+--
+
+INSERT INTO `time_schedules` (`schedule_id`, `school_id`, `day`, `am_IN`, `am_IN_co`, `am_OUT`, `am_OUT_co`, `pm_IN`, `pm_IN_co`, `pm_OUT`, `pm_OUT_co`, `do_id`, `shift_id`, `type`) VALUES
+(1, 1, 'Monday', '06:00 AM', '08:01 AM', '12:00 PM', '', '12:00 PM', '12:01 PM', '05:00 PM', '', 1, 1, 'Regular Shift'),
+(2, 1, 'Monday', '06:00 AM', '08:01 AM', '12:00 PM', '', '12:00 PM', '12:01 PM', '05:00 PM', '', 2, 1, 'Regular Shift'),
+(3, 1, 'Tuesday', '06:00 AM', '08:01 AM', '12:00 PM', '', '12:00 PM', '12:01 PM', '05:00 PM', '', 1, 1, 'Regular Shift'),
+(4, 1, 'Tuesday', '06:00 AM', '08:01 AM', '12:00 PM', '', '12:00 PM', '12:01 PM', '05:00 PM', '', 2, 1, 'Regular Shift'),
+(5, 1, 'Wednesday', '06:00 AM', '08:01 AM', '12:00 PM', '', '12:00 PM', '12:01 PM', '05:00 PM', '', 1, 1, 'Regular Shift'),
+(6, 1, 'Wednesday', '06:00 AM', '08:01 AM', '12:00 PM', '', '12:00 PM', '12:01 PM', '05:00 PM', '', 2, 1, 'Regular Shift'),
+(7, 1, 'Thursday', '06:00 AM', '08:01 AM', '12:00 PM', '', '12:00 PM', '12:01 PM', '05:00 PM', '', 1, 1, 'Regular Shift'),
+(8, 1, 'Thursday', '06:00 AM', '08:01 AM', '12:00 PM', '', '12:00 PM', '12:01 PM', '05:00 PM', '', 2, 1, 'Regular Shift'),
+(9, 1, 'Friday', '06:00 AM', '08:01 AM', '12:00 PM', '', '12:00 PM', '12:01 PM', '05:00 PM', '', 1, 1, 'Regular Shift'),
+(10, 1, 'Friday', '06:00 AM', '08:01 AM', '12:00 PM', '', '12:00 PM', '12:01 PM', '05:00 PM', '', 2, 1, 'Regular Shift');
 
 -- --------------------------------------------------------
 
@@ -1201,6 +1454,24 @@ CREATE TABLE `yearly_dtr_summary` (
   `day_absent_Total` decimal(11,1) NOT NULL,
   `total_num_leave` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_payroll_personnel_details`
+--
+DROP TABLE IF EXISTS `vw_payroll_personnel_details`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_payroll_personnel_details`  AS SELECT `prd`.`detail_id` AS `detail_id`, `prd`.`run_id` AS `run_id`, `pr`.`run_name` AS `run_name`, `pr`.`pay_period_start` AS `pay_period_start`, `pr`.`pay_period_end` AS `pay_period_end`, `prd`.`personnel_id` AS `personnel_id`, concat(`p`.`fname`,' ',ifnull(concat(substr(`p`.`mname`,1,1),'. '),''),`p`.`lname`) AS `personnel_name`, `d`.`dept_office_name` AS `dept_office_name`, `des`.`des_name` AS `designation_name`, `prd`.`gross_pay` AS `gross_pay`, `prd`.`total_deductions` AS `total_deductions`, `prd`.`total_employer_share` AS `total_employer_share`, `prd`.`net_pay` AS `net_pay`, `prd`.`payment_status` AS `payment_status`, `prd`.`payment_method` AS `payment_method`, `prd`.`payment_reference` AS `payment_reference` FROM ((((`pr_tbl_payroll_run_details` `prd` join `pr_tbl_payroll_runs` `pr` on(`prd`.`run_id` = `pr`.`run_id`)) join `personnels` `p` on(`prd`.`personnel_id` = `p`.`personnel_id`)) left join `dept_offices` `d` on(`p`.`do_id` = `d`.`do_id`)) left join `designation` `des` on(`p`.`des_id` = `des`.`des_id`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_payroll_run_summary`
+--
+DROP TABLE IF EXISTS `vw_payroll_run_summary`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_payroll_run_summary`  AS SELECT `pr`.`run_id` AS `run_id`, `pr`.`run_name` AS `run_name`, `pr`.`run_type` AS `run_type`, `pr`.`pay_period_start` AS `pay_period_start`, `pr`.`pay_period_end` AS `pay_period_end`, `pr`.`payment_date` AS `payment_date`, `pr`.`run_status` AS `run_status`, `pr`.`total_personnel` AS `total_personnel`, `pr`.`total_gross` AS `total_gross`, `pr`.`total_deductions` AS `total_deductions`, `pr`.`total_employer_share` AS `total_employer_share`, `pr`.`total_net_pay` AS `total_net_pay`, `pp`.`profile_name` AS `profile_name`, concat(`u1`.`fname`,' ',`u1`.`lname`) AS `created_by_name`, concat(`u2`.`fname`,' ',`u2`.`lname`) AS `approved_by_name`, `pr`.`approved_at` AS `approved_at`, `pr`.`completed_at` AS `completed_at`, `pr`.`created_at` AS `created_at` FROM (((`pr_tbl_payroll_runs` `pr` left join `pr_tbl_payroll_profiles` `pp` on(`pr`.`profile_id` = `pp`.`profile_id`)) left join `useraccount` `u1` on(`pr`.`created_by` = `u1`.`user_id`)) left join `useraccount` `u2` on(`pr`.`approved_by` = `u2`.`user_id`)) ;
 
 --
 -- Indexes for dumped tables
@@ -1592,19 +1863,19 @@ ALTER TABLE `client_computer`
 -- AUTO_INCREMENT for table `dept_offices`
 --
 ALTER TABLE `dept_offices`
-  MODIFY `do_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `do_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `designation`
 --
 ALTER TABLE `designation`
-  MODIFY `des_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `des_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `emp_status`
 --
 ALTER TABLE `emp_status`
-  MODIFY `empStat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `empStat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `files`
@@ -1616,7 +1887,7 @@ ALTER TABLE `files`
 -- AUTO_INCREMENT for table `gass`
 --
 ALTER TABLE `gass`
-  MODIFY `gass_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `gass_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `institution_preferences`
@@ -1646,13 +1917,13 @@ ALTER TABLE `leave_applications`
 -- AUTO_INCREMENT for table `leave_card`
 --
 ALTER TABLE `leave_card`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `monthly_leave_credits_log`
 --
 ALTER TABLE `monthly_leave_credits_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -1664,13 +1935,13 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `personnels`
 --
 ALTER TABLE `personnels`
-  MODIFY `personnel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=678;
+  MODIFY `personnel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=725;
 
 --
 -- AUTO_INCREMENT for table `personnel_educ_bg`
 --
 ALTER TABLE `personnel_educ_bg`
-  MODIFY `eb_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `eb_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `personnel_fam_bg`
@@ -1688,7 +1959,7 @@ ALTER TABLE `personnel_file_audit_logs`
 -- AUTO_INCREMENT for table `personnel_file_folders`
 --
 ALTER TABLE `personnel_file_folders`
-  MODIFY `folder_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `folder_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `personnel_logs`
@@ -1808,13 +2079,13 @@ ALTER TABLE `pr_tbl_personnel_income`
 -- AUTO_INCREMENT for table `service_record`
 --
 ALTER TABLE `service_record`
-  MODIFY `sr_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `shifts`
 --
 ALTER TABLE `shifts`
-  MODIFY `shift_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `shift_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `signatories_settings`
@@ -1832,7 +2103,7 @@ ALTER TABLE `slides`
 -- AUTO_INCREMENT for table `time_schedules`
 --
 ALTER TABLE `time_schedules`
-  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `travel_num_generator`
@@ -1851,24 +2122,6 @@ ALTER TABLE `useraccount`
 --
 ALTER TABLE `yearly_dtr_summary`
   MODIFY `yDTRs_id` int(11) NOT NULL AUTO_INCREMENT;
-
--- --------------------------------------------------------
-
---
--- Structure for view `vw_payroll_personnel_details`
---
-DROP TABLE IF EXISTS `vw_payroll_personnel_details`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_payroll_personnel_details`  AS SELECT `prd`.`detail_id` AS `detail_id`, `prd`.`run_id` AS `run_id`, `pr`.`run_name` AS `run_name`, `pr`.`pay_period_start` AS `pay_period_start`, `pr`.`pay_period_end` AS `pay_period_end`, `prd`.`personnel_id` AS `personnel_id`, concat(`p`.`fname`,' ',ifnull(concat(substr(`p`.`mname`,1,1),'. '),''),`p`.`lname`) AS `personnel_name`, `d`.`dept_office_name` AS `dept_office_name`, `des`.`des_name` AS `designation_name`, `prd`.`gross_pay` AS `gross_pay`, `prd`.`total_deductions` AS `total_deductions`, `prd`.`total_employer_share` AS `total_employer_share`, `prd`.`net_pay` AS `net_pay`, `prd`.`payment_status` AS `payment_status`, `prd`.`payment_method` AS `payment_method`, `prd`.`payment_reference` AS `payment_reference` FROM ((((`pr_tbl_payroll_run_details` `prd` join `pr_tbl_payroll_runs` `pr` on(`prd`.`run_id` = `pr`.`run_id`)) join `personnels` `p` on(`prd`.`personnel_id` = `p`.`personnel_id`)) left join `dept_offices` `d` on(`p`.`do_id` = `d`.`do_id`)) left join `designation` `des` on(`p`.`des_id` = `des`.`des_id`)) ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `vw_payroll_run_summary`
---
-DROP TABLE IF EXISTS `vw_payroll_run_summary`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_payroll_run_summary`  AS SELECT `pr`.`run_id` AS `run_id`, `pr`.`run_name` AS `run_name`, `pr`.`run_type` AS `run_type`, `pr`.`pay_period_start` AS `pay_period_start`, `pr`.`pay_period_end` AS `pay_period_end`, `pr`.`payment_date` AS `payment_date`, `pr`.`run_status` AS `run_status`, `pr`.`total_personnel` AS `total_personnel`, `pr`.`total_gross` AS `total_gross`, `pr`.`total_deductions` AS `total_deductions`, `pr`.`total_employer_share` AS `total_employer_share`, `pr`.`total_net_pay` AS `total_net_pay`, `pp`.`profile_name` AS `profile_name`, concat(`u1`.`fname`,' ',`u1`.`lname`) AS `created_by_name`, concat(`u2`.`fname`,' ',`u2`.`lname`) AS `approved_by_name`, `pr`.`approved_at` AS `approved_at`, `pr`.`completed_at` AS `completed_at`, `pr`.`created_at` AS `created_at` FROM (((`pr_tbl_payroll_runs` `pr` left join `pr_tbl_payroll_profiles` `pp` on(`pr`.`profile_id` = `pp`.`profile_id`)) left join `useraccount` `u1` on(`pr`.`created_by` = `u1`.`user_id`)) left join `useraccount` `u2` on(`pr`.`approved_by` = `u2`.`user_id`)) ;
 
 --
 -- Constraints for dumped tables

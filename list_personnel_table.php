@@ -17,11 +17,15 @@
                             <?php
                             
                             $dept_id = $_GET['dept'] ?? '';
-                            $staff_query = $conn->prepare("SELECT * FROM personnels WHERE do_id = :dept_id AND separation_date IS NULL ORDER BY lname, fname ASC");
+                            $staff_query = $conn->prepare("SELECT * FROM personnels WHERE do_id = :dept_id ORDER BY lname, fname ASC");
                             $staff_query->execute([':dept_id' => $dept_id]);
                             while ($staff_row = $staff_query->fetch()){
                                 
                             $personnel_id=$staff_row['personnel_id'];
+                            $personnel_img = trim((string)($staff_row['img'] ?? ''));
+                            if ($personnel_img === '') {
+                              $personnel_img = 'default_img.jpg';
+                            }
                             
                             ?>
            
@@ -29,7 +33,7 @@
                             <td>
                             <div class="personnel-cell d-flex align-items-center">
                               <a href="updateStudentImg.php?personnel_id=<?php echo $personnel_id; ?>&dept=<?php echo $_GET['dept']; ?>">
-                                <img src="personnelImg/<?php echo $staff_row['img']; ?>" width="64" height="64" class="personnel-avatar img-fluid rounded" />
+                                <img src="personnelImg/<?php echo htmlspecialchars($personnel_img); ?>" width="64" height="64" class="personnel-avatar img-fluid rounded" />
                               </a>
                               <div class="personnel-meta">
                                 <div class="personnel-code-row">

@@ -2,7 +2,7 @@
 $ptp_staff = $staff_row ?? [];
 $ptp_shift = $es_row5 ?? [];
 
-$ptp_img = !empty($ptp_staff['img']) ? (string)$ptp_staff['img'] : 'avatar-1.jpg';
+$ptp_img = !empty($ptp_staff['img']) ? (string)$ptp_staff['img'] : 'default_img.jpg';
 $ptp_lname = trim((string)($ptp_staff['lname'] ?? ''));
 $ptp_fname = trim((string)($ptp_staff['fname'] ?? ''));
 $ptp_mi = !empty($ptp_staff['mname']) ? strtoupper(substr((string)$ptp_staff['mname'], 0, 1)) . '.' : '';

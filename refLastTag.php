@@ -437,13 +437,3 @@ function myFunction6() {
 <!-- END SOUND EFFECTS -->
  
 </html>
-
-
-
-
-
-
-
-
-
-

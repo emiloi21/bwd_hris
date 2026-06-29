@@ -52,23 +52,38 @@ if(isset($_POST['search'])){
                       
                             <?php
                             
-                            if($searched == '')
-                            {
-                                // No search performed
-                            }else{  
-                                // Use prepared statement with LIKE parameter
-                                $search_param = '%' . $searched . '%';
+                            if($searched === '') {
+                              // Default view: show all active personnel across all departments.
                                 $staff_query = $conn->prepare("SELECT personnel_id, RFTag_id, personnel_id_code, img, lname, fname, mname, suffix, shift_id, do_id, empStat_id
-                                                               FROM personnels 
-                                                               WHERE (personnel_id_code LIKE :search1 OR lname LIKE :search2) AND separation_date IS NULL
+                                                               FROM personnels
                                                                ORDER BY lname, fname ASC");
-                                $staff_query->execute([':search1' => $search_param, ':search2' => $search_param]);
-                                
-                            while ($staff_row = $staff_query->fetch())
-                            
-                            {
+                              $staff_query->execute();
+                            } else {
+                              // Search view: filter active personnel by common identifiers.
+                              $search_param = '%' . $searched . '%';
+                              $staff_query = $conn->prepare("SELECT personnel_id, RFTag_id, personnel_id_code, img, lname, fname, mname, suffix, shift_id, do_id, empStat_id
+                                               FROM personnels
+                                               WHERE (personnel_id_code LIKE :search1
+                                                OR lname LIKE :search2
+                                                OR fname LIKE :search3
+                                                OR RFTag_id LIKE :search4)
+                                                                 
+                                               ORDER BY lname, fname ASC");
+                              $staff_query->execute([
+                                ':search1' => $search_param,
+                                ':search2' => $search_param,
+                                ':search3' => $search_param,
+                                ':search4' => $search_param
+                              ]);
+                            }
+
+                            while ($staff_row = $staff_query->fetch()) {
                                 
                             $personnel_id=$staff_row['personnel_id'];
+                            $personnel_img = trim((string)($staff_row['img'] ?? ''));
+                            if ($personnel_img === '') {
+                              $personnel_img = 'default_img.jpg';
+                            }
                             
                                 ?>
            
@@ -77,7 +92,7 @@ if(isset($_POST['search'])){
                           <td>
                             <div class="personnel-cell d-flex align-items-center">
                               <a href="updateStudentImg.php?personnel_id=<?php echo $personnel_id; ?>&dept=<?php echo $staff_row['do_id']; ?>">
-                                <img src="personnelImg/<?php echo $staff_row['img']; ?>" width="64" height="64" class="personnel-avatar img-fluid rounded" />
+                                <img src="personnelImg/<?php echo htmlspecialchars($personnel_img); ?>" width="64" height="64" class="personnel-avatar img-fluid rounded" />
                               </a>
                               <div class="personnel-meta">
                                 <div class="personnel-code-row">
@@ -174,7 +189,7 @@ if(isset($_POST['search'])){
                         <?php include('print_monthly_DTRNotes_modal.php'); ?>
                         <?php include('print_yearly_DTRSummary_modal.php'); ?>
                         
-                         <?php } } ?>
+                         <?php } ?>
                        
                       </tbody>
                     </table>
