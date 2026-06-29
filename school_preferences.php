@@ -26,7 +26,7 @@
           <ul class="breadcrumb">
             <li style="color: blue"><strong style="margin-right: 4px;"><?php echo $schoolName; ?> | </strong></li>
             <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-            <li class="breadcrumb-item active">Municipal Information</li>
+            <li class="breadcrumb-item active">Business Information</li>
           </ul>
         </div>
       </div>
@@ -40,7 +40,7 @@
       <div class="col-lg-12">
               <div class="card">
                 <div class="card-header d-flex align-items-center">
-                  <h4>MUNICIPAL INFORMATION</h4>
+                  <h4>BUSINESS INFORMATION</h4>
                 </div>
                 <div class="card-body">
                 
@@ -103,7 +103,7 @@
                     <div class="line"></div>
                     
                     <div class="form-group row">
-                      <label class="col-sm-2 form-control-label">Name of Employer</label>
+                      <label class="col-sm-2 form-control-label">Name</label>
                       <div class="col-sm-10">
                       <?php if($sfp_stat=="xEdit"){ ?>
                         <input type="text" class="form-control" readonly="true" value="<?php echo $schoolName; ?>">

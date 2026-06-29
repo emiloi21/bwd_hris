@@ -130,7 +130,7 @@
                           
             <li><a href="home.php"> <i class="icon-home"></i>Home</a></li>
             
-            <li><a href="#company_profile_dd" aria-expanded="false" data-toggle="collapse" aria-controls="company_profile_dd"> <i class="fa fa-institution"></i>Municipality</a>
+            <li><a href="#company_profile_dd" aria-expanded="false" data-toggle="collapse" aria-controls="company_profile_dd"> <i class="fa fa-institution"></i>Business</a>
               <ul id="company_profile_dd" class="collapse list-unstyled ">
                 <li><a href="school_preferences.php?sfp_stat=xEdit"> <i class="fa fa-info-circle"></i>Profile</a></li>
                 <li><a href="institutional_calendar.php?mm=<?php echo date('m'); ?>&yyyy=<?php echo date('Y'); ?>"> <i class="fa fa-calendar"></i>Calendar</a></li>

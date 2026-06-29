@@ -58,7 +58,7 @@
           <ul class="breadcrumb">
             <li style="color: blue"><strong style="margin-right: 4px;"><?php echo $schoolName; ?> | </strong></li>
             <li class="breadcrumb-item"><a href="<?php echo $breadcrumb_home; ?>">Home</a></li>
-            <li class="breadcrumb-item active">Institutional Calendar</li>
+            <li class="breadcrumb-item active">Business Calendar</li>
           </ul>
         </div>
       </div>
@@ -82,7 +82,7 @@
           <div class="row">
             <div class="col-lg-8 col-md-8">
               <div class="calendar-title-block">
-                <h2>Institutional Calendar</h2>
+                <h2>Business Calendar</h2>
                 <p>Manage monthly activities, holidays, and work-day display settings</p>
               </div>
             </div>
